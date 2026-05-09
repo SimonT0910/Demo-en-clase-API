@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TechStore — Catálogo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="header">
+    <div class="header__logo">⬡ TechStore</div>
+    <nav class="header__nav">
+      <span id="contador-productos" class="badge">0 productos</span>
+    </nav>
+  </header>
+
+  <main class="main">
+
+    <!-- Hero -->
+    <section class="hero">
+      <p class="hero__eyebrow">Inventario en tiempo real</p>
+      <h1 class="hero__title">Catálogo<br/><em>de productos</em></h1>
+      <p class="hero__sub">Consultá, agregá y gestioná el stock directamente desde acá.</p>
+    </section>
+
+    <!-- Formulario agregar producto -->
+    <section class="section">
+      <h2 class="section__title">Agregar producto</h2>
+      <form id="form-producto" class="form" novalidate>
+        <div class="form__row">
+          <div class="form__field">
+            <label for="nombre">Nombre <span class="req">*</span></label>
+            <input type="text" id="nombre" name="nombre" placeholder="Ej: Teclado mecánico" required minlength="2" />
+            <span class="form__error">El nombre es obligatorio</span>
+          </div>
+          <div class="form__field">
+            <label for="precio">Precio (COP) <span class="req">*</span></label>
+            <input type="number" id="precio" name="precio" placeholder="Ej: 150000" required min="1" />
+            <span class="form__error">El precio es obligatorio y debe ser mayor a 0</span>
+          </div>
+          <div class="form__field form__field--check">
+            <label class="toggle">
+              <input type="checkbox" id="disponible" name="disponible" checked />
+              <span class="toggle__track"></span>
+              <span class="toggle__label">Disponible</span>
+            </label>
+          </div>
+        </div>
+        <button type="submit" class="btn btn--primary" id="btn-agregar">
+          <span>+ Agregar producto</span>
+        </button>
+      </form>
+    </section>
+
+    <!-- Mensaje de estado -->
+    <div id="toast" class="toast" aria-live="polite"></div>
+
+    <!-- Tabla de productos -->
+    <section class="section">
+      <div class="table-header">
+        <h2 class="section__title">Productos</h2>
+        <button class="btn btn--ghost" id="btn-recargar">↻ Recargar</button>
+      </div>
+
+      <div id="estado-carga" class="estado-carga">Cargando productos...</div>
+
+      <div class="table-wrapper" id="tabla-wrapper" style="display:none;">
+        <table class="tabla">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Precio</th>
+              <th>Stock</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="tabla-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Modal editar -->
+    <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+      <div class="modal__backdrop" id="modal-backdrop"></div>
+      <div class="modal__box">
+        <div class="modal__header">
+          <h3>Editar producto</h3>
+          <button class="modal__close" id="modal-close">✕</button>
+        </div>
+        <form id="form-editar" class="form" novalidate>
+          <input type="hidden" id="edit-id" />
+          <div class="form__field">
+            <label for="edit-nombre">Nombre <span class="req">*</span></label>
+            <input type="text" id="edit-nombre" required minlength="2" />
+            <span class="form__error">El nombre es obligatorio</span>
+          </div>
+          <div class="form__field">
+            <label for="edit-precio">Precio (COP) <span class="req">*</span></label>
+            <input type="number" id="edit-precio" required min="1" />
+            <span class="form__error">El precio es obligatorio</span>
+          </div>
+          <div class="form__field form__field--check">
+            <label class="toggle">
+              <input type="checkbox" id="edit-disponible" />
+              <span class="toggle__track"></span>
+              <span class="toggle__label">Disponible</span>
+            </label>
+          </div>
+          <div class="form__actions">
+            <button type="button" class="btn btn--ghost" id="btn-cancelar">Cancelar</button>
+            <button type="submit" class="btn btn--primary">Guardar cambios</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <p>IF2003 Programación Web · Clase 12 · API REST con Node.js</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
