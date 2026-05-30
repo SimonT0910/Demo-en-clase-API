@@ -1,3 +1,5 @@
+// Es el encargado de leer y escribir en JSON, es el puente entre controlador y datos
+
 const fs   = require('fs');
 const path = require('path');
 

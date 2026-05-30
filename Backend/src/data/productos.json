@@ -16,5 +16,23 @@
     "nombre": "Monitor 23 pulgadas",
     "precio": 750000,
     "disponible": false
+  },
+  {
+    "id": 4,
+    "nombre": "Chanclas de Jesucristo",
+    "precio": 9999999,
+    "disponible": true
+  },
+  {
+    "id": 6,
+    "nombre": "pelos de erica",
+    "precio": 2,
+    "disponible": true
+  },
+  {
+    "id": 7,
+    "nombre": "TENGO GANAAAAAAAAAAS",
+    "precio": 4488123,
+    "disponible": true
   }
 ]

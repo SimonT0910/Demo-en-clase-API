@@ -1,6 +1,8 @@
 const express = require('express');
 const app     = express();
+const path = require('path');
 
+// Activa el JSON, habilita los cors, registra los logs de cada request conectando las rutas, manejando errores 404
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -17,12 +19,15 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use(express.static(path.join(__dirname, '../public')));
+
+
 const productosRoutes = require('./routes/productos');
 app.use('/api/productos', productosRoutes);
 
-app.get('/', (req, res) => {
-  res.json({ mensaje: 'API TechStore funcionando', version: '1.0.0' });
-});
+// app.get('/', (req, res) => {
+//   res.json({ mensaje: 'API TechStore funcionando', version: '1.0.0' });
+// });
 
 app.use((req, res) => {
   res.status(404).json({ error: 'Ruta no encontrada', ruta: req.originalUrl });
